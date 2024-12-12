@@ -93,7 +93,7 @@ function getRandomColor(colorBox){
     const randomBtn=document.getElementById("random");
     const Rcolor=`rgb(${red},${green},${blue})`;
     RcolorMetrics= {red:red,green:green,blue:blue}
-    const negativeColor= `rgb(${256 - red},${256 - green},${256 - blue})`;
+    const negativeColor= `rgb(${256 - RcolorMetrics.red},${256 - RcolorMetrics.green},${256 - RcolorMetrics.blue})`;
     randomBtn.style.backgroundColor=Rcolor;
     randomBtn.style.border="none";
     randomBtn.style.color = negativeColor;
@@ -124,11 +124,16 @@ function createRandomLetter(type){
     const lang= LangFlag===0?"EN":"HE";
     const alphabet = dictionary[lang];
     const randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
-    const negativeColor= `rgb(${256-RcolorMetrics.red},${256-RcolorMetrics.green},${256- RcolorMetrics.blue})`
     document.getElementById("Line_Width_select").value="8";
     const x = canvas.width / 2;
     let y = 0;
     selectline(8)
+    let negativeColor= `rgb(${256-RcolorMetrics.red},${256-RcolorMetrics.green},${256- RcolorMetrics.blue})`
+    for (let positive in outline){
+        if (color===positive){
+            negativeColor=outline[positive];
+        }
+    }
     if (type==='print'){
         Selcted_font=`400px ${LangFlag===0?"regular":"hebrew"}`;
         y=canvas.height / 2;
