@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paint</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="hedearBox">
+            <div class="h1 lang_display translatable" onclick="toggleLang()">עברית</div>
+            <div class="h1 translatable" id="h1">select your line color and width! and make a drawing!</div>
+        <div id="color_and_with_select_box">
+            <div class="color_selector translatable" id="random" onclick="randomize()">Click for a Random Color</div>
+            <div class="color_selector" id="black" onclick="selectcolor('black')"></div>
+            <div class="color_selector" id="red" onclick="selectcolor('red')"></div>
+            <div class="color_selector" id="pink" onclick="selectcolor('pink')"></div>
+            <div class="color_selector" id="purple" onclick="selectcolor('purple')"></div>
+            <div class="color_selector" id="blue" onclick="selectcolor('blue')"></div>
+            <div class="color_selector" id="aqua" onclick="selectcolor('aqua')"></div>
+            <div class="color_selector" id="green" onclick="selectcolor('green')"></div>
+            <div class="color_selector" id="yellow" onclick="selectcolor('yellow')"></div>
+            <div id="Line_Width_select_box">
+                <label for="Line_Width_select" id="select_label" class="translatable">Line width</label>
+                <select id="Line_Width_select" onchange="selectline(this.value)">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                </select>
+            </div>
+            <button id="Clear_canvas" onclick="clearCanvas()" class="translatable">Clear canvas</button>
+            <button id="Random_Letter" onclick="drawRandomLetter('print')" class="translatable">Practice writing a print letter😁</button>
+            <button id="Random_Letter" onclick="drawRandomLetter('script')" class="translatable">Practice writing a script letter😎</button>
+        </div>
+    </div>
+    <div id="canvasBox">
+        <canvas width="1333px" height="440px" id="myCanvas"></canvas>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
