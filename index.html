@@ -11,15 +11,15 @@
             <div class="h1 lang_display translatable" onclick="toggleLang()">עברית</div>
             <div class="h1 translatable" id="h1">select your line color and width! and make a drawing!</div>
         <div id="color_and_with_select_box">
-            <div class="color_selector translatable" id="random" onclick="randomize()">Click for a Random Color</div>
-            <div class="color_selector" id="black" onclick="selectcolor('black')"></div>
-            <div class="color_selector" id="red" onclick="selectcolor('red')"></div>
-            <div class="color_selector" id="pink" onclick="selectcolor('pink')"></div>
-            <div class="color_selector" id="purple" onclick="selectcolor('purple')"></div>
-            <div class="color_selector" id="blue" onclick="selectcolor('blue')"></div>
-            <div class="color_selector" id="aqua" onclick="selectcolor('aqua')"></div>
-            <div class="color_selector" id="green" onclick="selectcolor('green')"></div>
-            <div class="color_selector" id="yellow" onclick="selectcolor('yellow')"></div>
+            <div class="color_selector translatable" id="random" onclick="randomize(this)">Click for a Random Color</div>
+            <div class="color_selector" id="black" onclick="selectcolor('black',this)"></div>
+            <div class="color_selector" id="red" onclick="selectcolor('red',this)"></div>
+            <div class="color_selector" id="pink" onclick="selectcolor('pink',this)"></div>
+            <div class="color_selector" id="purple" onclick="selectcolor('purple',this)"></div>
+            <div class="color_selector" id="blue" onclick="selectcolor('blue',this)"></div>
+            <div class="color_selector" id="aqua" onclick="selectcolor('aqua',this)"></div>
+            <div class="color_selector" id="green" onclick="selectcolor('green',this)"></div>
+            <div class="color_selector" id="yellow" onclick="selectcolor('yellow',this)"></div>
             <div id="Line_Width_select_box">
                 <label for="Line_Width_select" id="select_label" class="translatable">Line width</label>
                 <select id="Line_Width_select" onchange="selectline(this.value)">

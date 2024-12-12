@@ -18,9 +18,19 @@ const dictionary={
     "Practice writing a script letter😎":"תרגל/י כתיבת אות בכתב יד😎",
     "Click for a Random Color":"לחץ/י לצבע אקראי",
 }
+const outline={
+    black:"red",
+    red:"blue",
+    green:"crimson",
+    blue:"red",
+    yellow:"green",
+    purple:"aqua",
+    pink:"black",
+    aqua:"yellow",
+}
 
 document.addEventListener('DOMContentLoaded', function() {
-    selectcolor("black");
+    selectcolor("black",false);
 });
 
 function startDrawing(e) {
@@ -45,40 +55,56 @@ function draw(e) {
     ctx.moveTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop); 
 }
 
-function selectcolor(Selcted_color){
+function selectcolor(Selcted_color,colorBox,negativeColor){
     color=Selcted_color;
+    const elementsToTranslate = document.querySelectorAll('.color_selector');
+    const outline_color=outline[Selcted_color]?outline[Selcted_color]:negativeColor;
+    elementsToTranslate.forEach(function (element) {
+        if (element!=colorBox){
+            element.style.outline="none";
+        }
+    });
+    if (colorBox){
+        colorBox.style.outline=`5px solid ${outline_color}`;
+    } else if (Selcted_color==="black"){
+        document.getElementById("black").style.outline="5px solid red";
+    }
 }
 
 function selectline(Selcted_width){
     lineWidth=Selcted_width;
 }
 
-function randomize() {
+function randomize(colorBox) {
     let i = 0;
     const interval = setInterval(() => {
-        const color = getRandomColor(); 
+        getRandomColor(colorBox); 
         i++;
         if (i >= 10) {
             clearInterval(interval);    
         }
-    }, 50);
+    }, 100);
 }
 
-function getRandomColor(){
+function getRandomColor(colorBox){
     const red = Math.floor(Math.random() * 256);  
     const green = Math.floor(Math.random() * 256);
     const blue = Math.floor(Math.random() * 256); 
     const randomBtn=document.getElementById("random");
     const Rcolor=`rgb(${red},${green},${blue})`;
     RcolorMetrics= {red:red,green:green,blue:blue}
+    const negativeColor= `rgb(${256 - red},${256 - green},${256 - blue})`;
     randomBtn.style.backgroundColor=Rcolor;
     randomBtn.style.border="none";
-    randomBtn.style.color = `rgb(${256 - red},${256 - green},${256 - blue})`;
-    selectcolor(Rcolor);
+    randomBtn.style.color = negativeColor;
+    selectcolor(Rcolor,colorBox,negativeColor);
 }
 
 function clearCanvas(){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    lineWidth=1;
+    document.getElementById("Line_Width_select").value="1";
+
 }
 
 function drawRandomLetter(type) {
@@ -92,14 +118,14 @@ function drawRandomLetter(type) {
     }, 50);
 
 }
+
 function createRandomLetter(type){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     const lang= LangFlag===0?"EN":"HE";
     const alphabet = dictionary[lang];
     const randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
     const negativeColor= `rgb(${256-RcolorMetrics.red},${256-RcolorMetrics.green},${256- RcolorMetrics.blue})`
-    const Line_Width_select=document.getElementById("Line_Width_select");
-    Line_Width_select.value="8";
+    document.getElementById("Line_Width_select").value="8";
     const x = canvas.width / 2;
     let y = 0;
     selectline(8)
@@ -107,7 +133,7 @@ function createRandomLetter(type){
         Selcted_font=`400px ${LangFlag===0?"regular":"hebrew"}`;
         y=canvas.height / 2;
     }else if (type==='script'){
-        Selcted_font=`${LangFlag===0?'100px':'300px'} ${LangFlag===0?"script":"HEscript"}`;
+        Selcted_font=`300px ${LangFlag===0?"script":"HEscript"}`;
         y=LangFlag===0?canvas.height / 1.5:canvas.height / 2;
     }
     ctx.font = Selcted_font;
