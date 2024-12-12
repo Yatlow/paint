@@ -25,7 +25,7 @@ const outline={
     blue:"red",
     yellow:"green",
     purple:"aqua",
-    pink:"black",
+    crimson:"black",
     aqua:"yellow",
 }
 
